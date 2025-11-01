@@ -10,29 +10,29 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-// export async function generateMetadata({ params }: Props) {
-//   const { id } = await params;
-//   const note = await fetchNoteById(id);
-//   return {
-//     title: `Note: ${note.title}`,
-//     description: note.content.slice(0, 30),
-//     openGraph: {
-//       title: `Note: ${note.title}`,
-//       description: note.content.slice(0, 100),
-//       url: `https://08-zustand-seven-snowy.vercel.app/notes/${id}`,
-//       siteName: "NoteHub",
-//       images: [
-//         {
-//           url: "https://ac.goit.global/fullstack/react/og-meta.jpg",
-//           width: 1200,
-//           height: 630,
-//           alt: note.title,
-//         },
-//       ],
-//       type: "article",
-//     },
-//   };
-// }
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
+  const note = await fetchNoteById(id);
+  return {
+    title: `Note: ${note.title}`,
+    description: note.content.slice(0, 30),
+    openGraph: {
+      title: `Note: ${note.title}`,
+      description: note.content.slice(0, 100),
+      url: `https://09-auth-lilac-tau.vercel.app/notes/${id}`,
+      siteName: "NoteHub",
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: note.title,
+        },
+      ],
+      type: "article",
+    },
+  };
+}
 
 const NotePreview = async ({ params }: Props) => {
   const { id } = await params;

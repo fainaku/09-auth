@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const nextServer = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://09-auth-lilac-tau.vercel.app",
   withCredentials: true,
 });
 axios.defaults.headers.common["Authorization"] = `Bearer ${
