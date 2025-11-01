@@ -1,18 +1,20 @@
 import { fetchNoteById } from "@/lib/api/clientApi";
-import NotePreviewClient from "./NotePreview.client";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import NoteDetailsClient from "./NoteDetails.client";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-// export async function generateMetadata({ params }: Props) {
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
 //   const { id } = await params;
 //   const note = await fetchNoteById(id);
+
 //   return {
 //     title: `Note: ${note.title}`,
 //     description: note.content.slice(0, 30),
@@ -34,7 +36,7 @@ interface Props {
 //   };
 // }
 
-const NotePreview = async ({ params }: Props) => {
+const NoteDetails = async ({ params }: Props) => {
   const { id } = await params;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
@@ -44,9 +46,9 @@ const NotePreview = async ({ params }: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotePreviewClient />
+      <NoteDetailsClient />
     </HydrationBoundary>
   );
 };
 
-export default NotePreview;
+export default NoteDetails;

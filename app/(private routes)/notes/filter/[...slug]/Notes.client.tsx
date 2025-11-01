@@ -11,7 +11,7 @@ import { useState } from "react";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
-import { fetchNotes } from "@/lib/api";
+import { fetchNotes } from "@/lib/api/clientApi";
 import { useDebouncedCallback } from "use-debounce";
 import { NoteTag } from "@/types/note";
 

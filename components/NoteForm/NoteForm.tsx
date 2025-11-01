@@ -2,7 +2,7 @@
 
 import css from "./NoteForm.module.css";
 import toast from "react-hot-toast";
-import { createNote, NewNoteData } from "@/lib/api";
+import { createNote, NewNoteData } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
 import { useMutation } from "@tanstack/react-query";

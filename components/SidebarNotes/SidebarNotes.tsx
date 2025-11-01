@@ -1,6 +1,6 @@
 import Link from "next/link";
 import css from "./SidebarNotes.module.css";
-import style from "../../app/notes/filter/[...slug]/page.module.css";
+import style from "@/app/(private routes)/notes/filter/[...slug]/page.module.css";
 
 const SidebarNotes = () => {
   const tags = ["Work", "Personal", "Meeting", "Shopping", "Todo"];
