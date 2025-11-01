@@ -1,4 +1,4 @@
-import { fetchNoteById } from "@/lib/api/clientApi";
+import { getServerNoteById } from "@/lib/api/serverApi";
 import NotePreviewClient from "./NotePreview.client";
 import {
   dehydrate,
@@ -12,14 +12,15 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const { id } = await params;
-  const note = await fetchNoteById(id);
+  const note = await getServerNoteById(id);
+
   return {
     title: `Note: ${note.title}`,
     description: note.content.slice(0, 30),
     openGraph: {
       title: `Note: ${note.title}`,
       description: note.content.slice(0, 100),
-      url: `https://09-auth-lilac-tau.vercel.app/notes/${id}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/notes/${id}`,
       siteName: "NoteHub",
       images: [
         {
@@ -39,7 +40,7 @@ const NotePreview = async ({ params }: Props) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchNoteById(id),
+    queryFn: () => getServerNoteById(id),
   });
 
   return (

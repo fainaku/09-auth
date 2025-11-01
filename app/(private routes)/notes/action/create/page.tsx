@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Create a New Note",
     description:
       "Add a new note to your personal collection. Capture important ideas, reminders, or tasks in one place.",
-    url: "https://09-auth-lilac-tau.vercel.app/notes/action/create",
+    url: `${process.env.NEXT_PUBLIC_API_URL}/notes/action/create`,
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/og-meta.jpg",

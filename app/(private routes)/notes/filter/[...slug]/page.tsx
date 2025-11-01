@@ -23,7 +23,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Notes with ${tag} tags`,
       description: `Notes with your ${tag} tags here`,
-      url: `https://09-auth-lilac-tau.vercel.app/notes/filter/${tag}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/notes/filter/${tag}`,
       siteName: "NoteHub",
       images: [
         {

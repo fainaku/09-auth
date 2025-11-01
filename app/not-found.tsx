@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Not Found",
     description: "Application not found",
-    url: "https://09-auth-lilac-tau.vercel.app/",
+    url: process.env.NEXT_PUBLIC_API_URL,
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/og-meta.jpg",

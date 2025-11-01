@@ -1,4 +1,4 @@
-import { fetchNoteById } from "@/lib/api/clientApi";
+import { getServerNoteById } from "@/lib/api/serverApi";
 import {
   dehydrate,
   HydrationBoundary,
@@ -13,7 +13,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const note = await fetchNoteById(id);
+  const note = await getServerNoteById(id);
 
   return {
     title: `Note: ${note.title}`,
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Note: ${note.title}`,
       description: note.content.slice(0, 100),
-      url: `https://09-auth-lilac-tau.vercel.app/notes/${id}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL}/notes/${id}`,
       siteName: "NoteHub",
       images: [
         {
@@ -41,7 +41,7 @@ const NoteDetails = async ({ params }: Props) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchNoteById(id),
+    queryFn: () => getServerNoteById(id),
   });
 
   return (

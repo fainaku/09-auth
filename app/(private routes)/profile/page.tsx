@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Profile page",
     description:
       "View your profile, update personal information, and manage your account settings on NoteHub.",
-    url: "https://09-auth-lilac-tau.vercel.app",
+    url: process.env.NEXT_PUBLIC_API_URL,
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/og-meta.jpg",
