@@ -1,4 +1,3 @@
-import { fetchNotes } from "@/lib/api/clientApi";
 import {
   dehydrate,
   HydrationBoundary,
@@ -7,6 +6,7 @@ import {
 import NotesClient from "./Notes.client";
 import { NoteTag } from "@/types/note";
 import { Metadata } from "next";
+import { getServerNotes } from "@/lib/api/serverApi";
 
 interface NotesPageProps {
   params: Promise<{ slug: [NoteTag | "all"] }>;
@@ -46,7 +46,7 @@ const NotesPage = async ({ params }: NotesPageProps) => {
 
   await queryClient.prefetchQuery({
     queryKey: ["notes", tag],
-    queryFn: () => fetchNotes({ tag }),
+    queryFn: () => getServerNotes({ tag }),
   });
 
   return (
