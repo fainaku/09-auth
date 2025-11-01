@@ -45,7 +45,6 @@ export async function middleware(request: NextRequest) {
   const isPublicRoute = isRouteMatch(pathname, PUBLIC_ROUTES);
   const isPrivateRoute = isRouteMatch(pathname, PRIVATE_ROUTES);
 
-  // 1️⃣ Якщо є accessToken
   if (accessToken) {
     if (isPublicRoute) {
       return NextResponse.redirect(new URL("/", request.url));
@@ -55,11 +54,9 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // 2️⃣ Якщо accessToken немає — пробуємо оновити сесію
   const sessionRestored = await refreshSessionIfNeeded(cookieStore);
 
   if (sessionRestored) {
-    // Якщо сесія оновилась
     if (isPublicRoute) {
       return NextResponse.redirect(new URL("/", request.url), {
         headers: { Cookie: cookieStore.toString() },
@@ -72,7 +69,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // 3️⃣ Якщо сесії немає
   if (isPublicRoute) return NextResponse.next();
 
   if (isPrivateRoute)
