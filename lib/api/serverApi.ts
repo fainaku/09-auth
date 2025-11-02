@@ -46,6 +46,7 @@ export const getServerNotes = async ({
   perPage?: number;
   tag?: string;
 }): Promise<FetchNotesResponse> => {
+  const cookieStore = await cookies();
   const { data } = await nextServer.get<FetchNotesResponse>("/notes", {
     params: {
       search,

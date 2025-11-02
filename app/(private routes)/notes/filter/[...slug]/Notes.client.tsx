@@ -33,7 +33,7 @@ const NotesClient = ({ tag }: NotesClientProps) => {
   );
 
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ["notes", page, search, perPage],
+    queryKey: ["notes", page, search, perPage, tag],
     queryFn: () => fetchNotes({ search, page, perPage, tag }),
     retry: 3,
     placeholderData: keepPreviousData,

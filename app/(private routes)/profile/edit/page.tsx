@@ -5,6 +5,7 @@ import css from "./EditProfilePage.module.css";
 import { getMe, updateMe } from "@/lib/api/clientApi";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/lib/store/authStore";
 
 const EditProfilePage = () => {
   const [userName, setUserName] = useState("");
@@ -12,6 +13,7 @@ const EditProfilePage = () => {
   const [userEmail, setUserEmail] = useState("");
 
   const router = useRouter();
+  const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
     getMe().then((user) => {
@@ -29,7 +31,8 @@ const EditProfilePage = () => {
     event.preventDefault();
 
     try {
-      await updateMe({ username: userName });
+      const updateUser = await updateMe({ username: userName });
+      setUser(updateUser);
 
       navigateBack();
     } catch (error) {
